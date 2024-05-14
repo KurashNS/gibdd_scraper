@@ -16,5 +16,5 @@ def _get_file_handler(level: int | str = INFO) -> FileHandler:
 
 class GibddScraperLogger(Logger):
     def __init__(self, name: str = 'GibddScraper', level: int | str = INFO):
-        Logger.__init__(self, name=name, level=level)
+        super().__init__(name=name, level=level)
         self.addHandler(_get_file_handler(level=level))

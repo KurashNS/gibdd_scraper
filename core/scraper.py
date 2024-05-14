@@ -20,7 +20,7 @@ check_vehicle_retry_exceptions = (ProxyConnectionError, ProxyError, ProxyTimeout
 
 
 class GibddClient:
-	_proxy_server_url = 'http://yfy5n4:s4SsUv@94.103.188.163:13811'
+	_proxy_server_url = 'http://yfy5n4:s4SsUv@185.82.126.71:13518'
 
 	def __init__(self, captcha_solver: CaptchaSolverModel, logger: Logger) -> None:
 		self._ua = ua_generator.generate(device='desktop')
@@ -135,12 +135,12 @@ if __name__ == '__main__':
 		gibdd_client = GibddClient(captcha_solver=CaptchaSolverModel.load(), logger=logger)
 
 		vin_list = [
-			           'XWEL2416BL0000433',
-			           'X9FKXXEEBKBM40204',
-			           'XWEGU411BK0013037',
-			           'Z94C241BBNR254203',
-			           'XW8ZZZ61ZJG051127'
-		           ] * 100000
+	           'XWEL2416BL0000433',
+	           'X9FKXXEEBKBM40204',
+	           'XWEGU411BK0013037',
+	           'Z94C241BBNR254203',
+	           'XW8ZZZ61ZJG051127'
+	       ] * 100000
 		test_tasks = [gibdd_client.check_vehicle(vin=vin, check_type='ДТП') for vin in vin_list]
 		for test_task in asyncio.as_completed(test_tasks):
 			try:

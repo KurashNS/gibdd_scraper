@@ -1,0 +1,9 @@
+aiohttp~=3.9.3
+aiohttp_socks~=0.8.4
+ua_generator~=0.4.2
+tenacity~=8.2.3
+opencv-python~=4.9.0.80
+numpy~=1.26.4
+mltu~=1.1.4
+pandas~=2.2.1
+openpyxl~=3.1.2

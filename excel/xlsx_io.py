@@ -12,8 +12,7 @@ import datetime
 
 import threading
 
-
-file_thread_lock = threading.Lock()
+_thread_lock = threading.Lock()
 
 
 def get_vin_list(input_excel_file: str):
@@ -35,7 +34,7 @@ def get_vin_list(input_excel_file: str):
 
 
 def output_check_result(output_excel_file: str, check_result: pd.DataFrame, check_type: str) -> None:
-	with file_thread_lock:
+	with _thread_lock:
 		try:
 			wb: Workbook = load_workbook(filename=output_excel_file)
 			if check_type in wb.sheetnames:
@@ -56,6 +55,6 @@ def output_check_result(output_excel_file: str, check_result: pd.DataFrame, chec
 			for sheet_name in wb.sheetnames:
 				sheet = wb[sheet_name]
 				if sheet.max_row == 1 and sheet.max_column == 1:
-					wb.remove(sheet)
+					wb.remove(worksheet=sheet)
 
 		wb.save(filename=output_excel_file)

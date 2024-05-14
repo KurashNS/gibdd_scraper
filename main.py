@@ -11,7 +11,6 @@ import asyncio
 
 from datetime import datetime
 
-
 VIN_LIST_FILE_PATH = 'excel/input/vin_list.xlsx'
 OUTPUT_FILE_PATH = f'excel/output/gibdd_{datetime.now().strftime(format="%Y-%m-%d_%H-%M-%S")}.xlsx'
 
@@ -36,21 +35,21 @@ async def main(vin_list: list[str], check_types: list[str]):
 if __name__ == '__main__':
 	import time
 
-	vins = [
-		'XWWFT411BA0000039',
-		'TMAD281BBDJ015022',
-		'XTA219060F0311934',
-		'X7LASREA756363961',
-		'X9F5XXEED56J14373'
-	]
-	# vins = get_vin_list(VIN_LIST_FILE_PATH)
+	# vins = [
+	# 	'XWWFT411BA0000039',
+	# 	'TMAD281BBDJ015022',
+	# 	'XTA219060F0311934',
+	# 	'X7LASREA756363961',
+	# 	'X9F5XXEED56J14373'
+	# ]
+	vins = get_vin_list(VIN_LIST_FILE_PATH)
 	checks = [
 		'Общая информация о ТС',
 		'История регистрации',
-		# 'ДТП',
-		# 'Розыск',
-		# 'Ограничения на рег. действия',
-		# 'Диагностическая карта'
+		'ДТП',
+		'Розыск',
+		'Ограничения на рег. действия',
+		'Диагностическая карта'
 	]
 
 	start_time = time.time()

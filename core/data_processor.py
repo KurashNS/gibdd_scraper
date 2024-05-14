@@ -27,7 +27,7 @@ def json_to_df(
 		if col_types:
 			for col, dtype in col_types.items():
 				if dtype == 'ru_datetime':
-					df[col] = pd.to_datetime(df[col], format='%d.%m.%Y %H:%M')
+					df[col] = pd.to_datetime(df[col], format='%d.%m.%Y %H:%M').dt.date
 				elif dtype == 'ru_date':
 					df[col] = pd.to_datetime(df[col], format='%d.%m.%Y').dt.date
 				elif dtype == 'ru_date_str':
