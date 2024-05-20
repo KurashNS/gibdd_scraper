@@ -1,6 +1,6 @@
 import ua_generator
 from aiohttp_socks import ProxyConnector
-from aiohttp import ClientSession, ClientError, ClientResponseError
+from aiohttp import ClientSession, ClientError, ClientResponseError, TCPConnector
 
 from core.captcha_solver.model import CaptchaSolverModel
 
@@ -84,7 +84,8 @@ class GibddClient:
 	@retry(retry=retry_if_exception_type(check_vehicle_retry_exceptions), sleep=asyncio.sleep,
 	       wait=wait_random(min=3, max=5), stop=stop_after_attempt(5), reraise=True)
 	async def _make_vehicle_check_request(self, vin: str, check_type: str):
-		async with ProxyConnector.from_url(url=self._proxy_server_url) as proxy_conn:
+		# async with ProxyConnector.from_url(url=self._proxy_server_url) as proxy_conn:
+		async with TCPConnector() as proxy_conn:
 			async with ClientSession(connector=proxy_conn, headers=self._headers, raise_for_status=True) as session:
 				captcha = await self._get_captcha(session=session)
 				vehicle_check_url, vehicle_check_data = await self._prepare_vehicle_check_request(
